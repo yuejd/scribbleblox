@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Scratch Project Editor and Player
  * Copyright (C) 2014 Massachusetts Institute of Technology
  *
@@ -380,7 +380,7 @@ public class Scratch extends Sprite {
 	}
 
 	protected function startInEditMode():Boolean {
-		return isOffline || isExtensionDevMode;
+		return true;
 	}
 
 	public function getMediaLibrary(type:String, whenDone:Function):MediaLibrary {
