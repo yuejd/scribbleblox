@@ -73,6 +73,7 @@ public class Specs {
 		[11, "Parameter",	parameterColor],
 		[12, "List",		listColor],
 		[20, "Extension",	extensionsColor],
+		[13, "ECMAScript",	0x46B8EE]
 	];
 
 	public static function blockColor(categoryID:int):int {
@@ -361,6 +362,10 @@ public class Specs {
 		["show list %m.list",								" ", 12, "showList:"],
 		["hide list %m.list",								" ", 12, "hideList:"],
 
+		// ecmascript blocks
+		["run JavaScript %s",	" ",	13,	"runJS",	""],
+		["run JavaScript %s",	"r",	13,	"runJS",	""],
+
 		// obsolete blocks from Scratch 1.4 that may be used in older projects
 		["play drum %n for %n beats",			" ", 98, "drum:duration:elapsed:from:", 1, 0.25], // Scratch 1.4 MIDI drum
 		["set instrument to %n",				" ", 98, "midiInstrument:", 1],
@@ -377,12 +382,17 @@ public class Specs {
 
 		// testing and experimental control prims
 		["noop",								"r", 99, "COUNT"],
-		["counter",								"r", 99, "COUNT"],
-		["clear counter",						" ", 99, "CLR_COUNT"],
-		["incr counter",						" ", 99, "INCR_COUNT"],
-		["for each %m.varName in %s",			"c", 99, "doForLoop", "v", 10],
-		["while %b",							"c", 99, "doWhile"],
-		["all at once",							"c", 99, "warpSpeed"],
+		["counter",								"r", 6, "COUNT"],
+		["clear counter",						" ", 6, "CLR_COUNT"],
+		["incr counter",						" ", 6, "INCR_COUNT"],
+		["for each %m.varName in %s",			"c", 6, "doForLoop", "v", 10],
+		["while %b",							"c", 6, "doWhile"],
+		["all at once",							"c", 6, "warpSpeed"],
+		["clear counter",						" ", 106, "CLR_COUNT"],
+		["incr counter",						" ", 106, "INCR_COUNT"],
+		["for each %m.varName in %s",			"c", 106, "doForLoop", "v", 10],
+		["while %b",							"c", 106, "doWhile"],
+		["all at once",							"c", 106, "warpSpeed"],
 
 		// stage motion (scrolling)
 		["scroll right %n",						" ", 99, "scrollRight",		10],

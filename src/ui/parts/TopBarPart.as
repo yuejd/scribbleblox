@@ -38,7 +38,8 @@ import uiwidgets.*;
 public class TopBarPart extends UIPart {
 
 	private var shape:Shape;
-	protected var logoButton:IconButton;
+	private var logo:Bitmap;
+
 	protected var languageButton:IconButton;
 
 	protected var fileMenu:IconButton;
@@ -66,25 +67,14 @@ public class TopBarPart extends UIPart {
 
 	protected function addButtons():void {
 		addChild(shape = new Shape());
+		addChild(logo = Resources.createBmp('scribblebloxLogo'));
 		addChild(languageButton = new IconButton(app.setLanguagePressed, 'languageButton'));
+		logo.x = 5;
+		logo.y = 5;
+		languageButton.x = logo.x + logo.width + 9;
 		languageButton.isMomentary = true;
 		addTextButtons();
 		addToolButtons();
-		if (Scratch.app.isExtensionDevMode) {
-			addChild(logoButton = new IconButton(app.logoButtonPressed, Resources.createBmp('scratchxlogo')));
-			const desiredButtonHeight:Number = 20;
-			logoButton.scaleX = logoButton.scaleY = 1;
-			var scale:Number = desiredButtonHeight / logoButton.height;
-			logoButton.scaleX = logoButton.scaleY = scale;
-
-			addChild(exportButton = new Button('Save Project', function():void { app.exportProjectToFile(); }));
-			addChild(extensionLabel = makeLabel('My Extension', offlineNoticeFormat, 2, 2));
-
-			var extensionDevManager:ExtensionDevManager = Scratch.app.extensionManager as ExtensionDevManager;
-			if (extensionDevManager) {
-				addChild(loadExperimentalButton = extensionDevManager.makeLoadExperimentalExtensionButton());
-			}
-		}
 	}
 
 	public static function strings():Array {
@@ -120,27 +110,16 @@ public class TopBarPart extends UIPart {
 		fixLayout();
 	}
 
-	protected function fixLogoLayout():int {
-		var nextX:int = 9;
-		if (logoButton) {
-			logoButton.x = nextX;
-			logoButton.y = 5;
-			nextX += logoButton.width + buttonSpace;
-		}
-		return nextX;
-	}
-
 	protected const buttonSpace:int = 12;
 	protected function fixLayout():void {
 		const buttonY:int = 5;
 
-		var nextX:int = fixLogoLayout();
-
-		languageButton.x = nextX;
 		languageButton.y = buttonY - 1;
 		nextX += languageButton.width + buttonSpace;
 
 		// new/more/tips buttons
+		const buttonSpace:int = 12;
+		var nextX:int = languageButton.x + languageButton.width + 13;
 		fileMenu.x = nextX;
 		fileMenu.y = buttonY;
 		nextX += fileMenu.width + buttonSpace;

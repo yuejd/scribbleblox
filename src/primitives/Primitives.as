@@ -29,6 +29,7 @@ package primitives {
 	import interpreter.*;
 	import scratch.ScratchSprite;
 	import translation.Translator;
+	import flash.external.ExternalInterface;
 
 public class Primitives {
 
@@ -72,6 +73,9 @@ public class Primitives {
 		primTable["deleteClone"]		= primDeleteClone;
 		primTable["whenCloned"]			= interp.primNoop;
 
+		// ecmascript
+		primTable["runJS"]			= primRunJS;
+
 		// testing (for development)
 		primTable["NOOP"]				= interp.primNoop;
 		primTable["COUNT"]				= function(b:*):* { return counter };
@@ -88,6 +92,15 @@ public class Primitives {
 	protected function addOtherPrims(primTable:Dictionary):void {
 		new SensingPrims(app, interp).addPrimsTo(primTable);
 		new ListPrims(app, interp).addPrimsTo(primTable);
+	}
+
+	private function primRunJS(b:Block):* {
+		var strCode:String = interp.arg(b, 0);
+		if(app.externalInterfaceAvailable()) {
+			return ExternalInterface.call(strCode);
+		} else {
+			return -1;
+		}
 	}
 
 	private function primRandom(b:Block):Number {
