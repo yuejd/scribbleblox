@@ -144,6 +144,7 @@ public class Specs {
 		["-"],
 		["show",								" ", 2, "show"],
 		["hide",								" ", 2, "hide"],
+		["visible?",								"b", 2,	"isVisible"],
 		["-"],
 		["switch costume to %m.costume",		" ", 2, "lookLike:",				"costume1"],
 		["next costume",						" ", 2, "nextCostume"],

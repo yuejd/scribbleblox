@@ -68,6 +68,7 @@ public class LooksPrims {
 		primTable['show']					= primShow;
 		primTable['hide']					= primHide;
 //		primTable['hideAll']				= primHideAll;
+		primTable['isVisible']				= primIsVisible;
 
 		primTable['comeToFront']			= primGoFront;
 		primTable['goBackByLayers:']		= primGoBack;
@@ -255,6 +256,12 @@ public class LooksPrims {
 		if(!app.isIn3D) s.applyFilters();
 		s.updateBubble();
 		interp.redraw();
+	}
+
+	private function primIsVisible(b:Block):Boolean {
+		var s:ScratchSprite = interp.targetSprite();
+		if(s == null) return false;
+		return s.visible;
 	}
 
 	private function primHideAll(b:Block):void {
