@@ -41,6 +41,7 @@ public class LooksPrims {
 	public function addPrimsTo(primTable:Dictionary):void {
 		primTable['lookLike:']				= primShowCostume;
 		primTable['nextCostume']			= primNextCostume;
+		primTable['prevCostume']			= primPrevCostume;
 		primTable['costumeIndex']			= primCostumeIndex;
 		primTable['costumeName']			= primCostumeName;
 
@@ -88,6 +89,12 @@ public class LooksPrims {
 	private function primNextCostume(b:Block):void {
 		var s:ScratchObj = interp.targetObj();
 		if (s != null) s.showCostume(s.currentCostumeIndex + 1);
+		if (s.visible) interp.redraw();
+	}
+
+	private function primPrevCostume(b:Block):void {
+		var s:ScratchObj = interp.targetObj();
+		if (s != null) s.showCostume(s.currentCostumeIndex - 1);
 		if (s.visible) interp.redraw();
 	}
 

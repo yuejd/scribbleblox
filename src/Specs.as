@@ -149,6 +149,7 @@ public class Specs {
 		["-"],
 		["switch costume to %m.costume",		" ", 2, "lookLike:",				"costume1"],
 		["next costume",						" ", 2, "nextCostume"],
+		["previous costume",				" ", 2, "prevCostume"],
 		["switch backdrop to %m.backdrop",		" ", 2, "startScene", 				"backdrop1"],
 		["-"],
 		["change %m.effect effect by %n",		" ", 2, "changeGraphicEffect:by:",	"color", 25],
