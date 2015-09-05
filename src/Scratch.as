@@ -102,6 +102,9 @@ public class Scratch extends Sprite {
 	public var debugOps:Boolean = false;
 	public var debugOpCmd:String = '';
 
+	// ECMAScript function IDs
+	public var int:functionID = 0;
+
 	protected var autostart:Boolean;
 	private var viewedObject:ScratchObj;
 	private var lastTab:String = 'scripts';

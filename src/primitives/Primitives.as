@@ -50,6 +50,7 @@ public class Primitives {
 		primTable["-"]				= function(b:*):* { return interp.numarg(b, 0) - interp.numarg(b, 1) };
 		primTable["*"]				= function(b:*):* { return interp.numarg(b, 0) * interp.numarg(b, 1) };
 		primTable["/"]				= function(b:*):* { return interp.numarg(b, 0) / interp.numarg(b, 1) };
+		primTable["^"]				= function(b:*):* { return Math.pow(interp.numarg(b, 0), interp.numarg(b, 1)) };
 		primTable["randomFrom:to:"]	= primRandom;
 		primTable["<"]				= function(b:*):* { return compare(interp.arg(b, 0), interp.arg(b, 1)) < 0 };
 		primTable["="]				= function(b:*):* { return compare(interp.arg(b, 0), interp.arg(b, 1)) == 0 };
@@ -59,6 +60,7 @@ public class Primitives {
 		primTable["not"]			= function(b:*):* { return !interp.arg(b, 0) };
 		primTable["abs"]			= function(b:*):* { return Math.abs(interp.numarg(b, 0)) };
 		primTable["sqrt"]			= function(b:*):* { return Math.sqrt(interp.numarg(b, 0)) };
+		primTable["newline"]			= function(b:*):* { return "\n" };
 
 		primTable["concatenate:with:"]	= function(b:*):* { return ("" + interp.arg(b, 0) + interp.arg(b, 1)).substr(0, 10240); };
 		primTable["letter:of:"]			= primLetterOf;
@@ -97,7 +99,10 @@ public class Primitives {
 	private function primRunJS(b:Block):* {
 		var strCode:String = interp.arg(b, 0);
 		if(app.externalInterfaceAvailable()) {
-			return ExternalInterface.call(strCode);
+			var fName:String = "_f_" + app.functionID.toString();
+			ExternalInterface.call("", "script");
+			app.functionID ++;
+			return ExternalInterface.call(fName);
 		} else {
 			return -1;
 		}
