@@ -100,9 +100,8 @@ public class Primitives {
 		var strCode:String = interp.arg(b, 0);
 		if(app.externalInterfaceAvailable()) {
 			var fName:String = "_f_" + app.functionID.toString();
-			ExternalInterface.call("", "script");
 			app.functionID ++;
-			return ExternalInterface.call(fName);
+			return ExternalInterface.call(strCode);
 		} else {
 			return -1;
 		}
